@@ -7,7 +7,10 @@ import {
 } from "./types";
 
 export function getSiteData(){
-    const request = axios.get(`${SITE_SERVER}/site_data`).then(res => res.data)
+    const request = axios.get(`${SITE_SERVER}/site_data`).then(res => {
+        console.log(res)
+        return res.data
+    })
     return {
         type: GET_SITE_DATA,
         payload:request
@@ -22,3 +25,10 @@ export async function updateSiteData(dataToSubmit){
         payload: request
     }
 }
+
+
+
+
+
+
+

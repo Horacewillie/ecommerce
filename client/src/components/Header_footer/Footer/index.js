@@ -5,8 +5,12 @@ import {faPhone} from "@fortawesome/free-solid-svg-icons";
 import {faClock }from "@fortawesome/free-solid-svg-icons";
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
 
-function Footer() {
+
+
+function Footer({data}) {
+
   return (
+    data.siteData ?
     <footer className="bck_b_dark">
       <div className="container">
         <div className="logo">Waves</div>
@@ -18,28 +22,28 @@ function Footer() {
                 <FontAwesomeIcon icon={faCompass} className ='icon'/>
                 <div className="nfo">
                   <div>Address</div>
-                  <div>Kramer 12345</div>
+                  <div>{data.siteData[0].address}</div>
                 </div>
               </div>
               <div className="tag">
                 <FontAwesomeIcon icon={faPhone} className ='icon'/>
                 <div className="nfo">
                   <div>Phone</div>
-                  <div>234-567</div>
+                  <div>{data.siteData[0].phone}</div>
                 </div>
               </div>
               <div className="tag">
                 <FontAwesomeIcon icon={faClock} className ='icon'/>
                 <div className="nfo">
                   <div>Working hours</div>
-                  <div>Mon-Sun/ 9am-8pm</div>
+                  <div>{data.siteData[0].hours}</div>
                 </div>
               </div>
               <div className="tag">
                 <FontAwesomeIcon icon={faEnvelope} className ='icon'/>
                 <div className="nfo">
                   <div>Email</div>
-                  <div>info.waves@gmail.com</div>
+                  <div>{data.siteData[0].email}</div>
                 </div>
               </div>
             </div>
@@ -55,7 +59,10 @@ function Footer() {
         </div>
       </div>
     </footer>
+    : null
   );
 }
+
+
 
 export default Footer;

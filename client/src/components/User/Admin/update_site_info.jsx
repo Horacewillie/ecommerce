@@ -6,12 +6,10 @@ import {
   isFormValid,
   populateFields,
 } from "../../utils/Form/formActions";
-
+import { connect } from "react-redux";
 import { getSiteData, updateSiteData } from "../../../actions/site_actions";
 
-import { connect } from "react-redux";
-
-class UpadeSiteInfo extends Component {
+class UpdateSiteInfo extends Component {
   state = {
     formError: false,
     formSuccess: false,
@@ -20,7 +18,7 @@ class UpadeSiteInfo extends Component {
         element: "input",
         value: "",
         config: {
-          label: "address",
+          label: "Address",
           name: "address_input",
           type: "text",
           placeholder: "Enter the site address",
@@ -31,16 +29,16 @@ class UpadeSiteInfo extends Component {
         valid: false,
         touched: false,
         validationMessage: "",
-        showLabel: true,
+        showlabel: true,
       },
       hours: {
         element: "input",
         value: "",
         config: {
           label: "Working hours",
-          name: "hours_input",
+          lastname: "hours_input",
           type: "text",
-          placeholder: "Enter the site working hours",
+          placeholder: "Enter your working hours",
         },
         validation: {
           required: true,
@@ -48,14 +46,14 @@ class UpadeSiteInfo extends Component {
         valid: false,
         touched: false,
         validationMessage: "",
-        showLabel: true,
+        showlabel: true,
       },
       phone: {
         element: "input",
         value: "",
         config: {
           label: "Phone number",
-          name: "phone_input",
+          lastname: "phone_input",
           type: "text",
           placeholder: "Enter the phone number",
         },
@@ -65,14 +63,14 @@ class UpadeSiteInfo extends Component {
         valid: false,
         touched: false,
         validationMessage: "",
-        showLabel: true,
+        showlabel: true,
       },
       email: {
         element: "input",
         value: "",
         config: {
-          label: "email",
-          name: "email_input",
+          label: "Shop email",
+          lastname: "email_input",
           type: "text",
           placeholder: "Enter your email",
         },
@@ -82,7 +80,7 @@ class UpadeSiteInfo extends Component {
         valid: false,
         touched: false,
         validationMessage: "",
-        showLabel: true,
+        showlabel: true,
       },
     },
   };
@@ -103,19 +101,16 @@ class UpadeSiteInfo extends Component {
 
     if (formIsValid) {
       this.props.dispatch(updateSiteData(dataToSubmit)).then(() => {
-        this.setState(
-          {
-            formSuccess: true,
-          },
-          () => {
-            setTimeout(() => {
-              this.setState({
-                formSuccess: false,
-              });
-            }, 2000);
-          }
-        );
-      });
+        this.setState({
+          formSuccess: true
+        }, ()=>{
+          setTimeout(() => {
+            this.setState({
+              formSuccess: false
+            })
+          }, 2000)
+        })
+      })
     } else {
       this.setState({
         formError: true,
@@ -129,7 +124,6 @@ class UpadeSiteInfo extends Component {
         this.state.formData,
         this.props.site.siteData[0]
       );
-
       this.setState({
         formData: newFormData,
       });
@@ -179,4 +173,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(UpadeSiteInfo);
+export default connect(mapStateToProps)(UpdateSiteInfo);

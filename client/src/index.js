@@ -25,11 +25,11 @@ ReactDOM.render(
         window.__REDUX_DEVTOOLS_EXTENSION__()
     )}
   >
-    <React.StrictMode>
+    <>
       <BrowserRouter>
         <Routes />
       </BrowserRouter>
-    </React.StrictMode>
+    </>
   </Provider>,
   document.getElementById("root")
 );
