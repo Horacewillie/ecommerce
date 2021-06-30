@@ -49,6 +49,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(morgan("tiny"));
+app.use(express.static('client/build'))
 
 /******* MODELS *********/
 const { User } = require("./models/user");
@@ -595,6 +596,14 @@ app.post("/api/site/site_data", auth, admin, (req, res) => {
     res.json({success: false, err})
   })
 });
+
+// DEFAULT
+if( process.env.NODE_ENV === 'production'){
+  const path = require('path')
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))
+  })
+}
 
 /******* LISTENING TO REQUEST *********/
 mongooseConnect(() =>
